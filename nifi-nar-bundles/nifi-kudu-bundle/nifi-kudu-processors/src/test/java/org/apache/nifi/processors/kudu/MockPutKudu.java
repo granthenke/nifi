@@ -18,15 +18,15 @@
 package org.apache.nifi.processors.kudu;
 
 import org.apache.kudu.Schema;
-import org.apache.kudu.client.DeleteIgnore;
-import org.apache.kudu.client.InsertIgnore;
+//import org.apache.kudu.client.DeleteIgnore;
+//import org.apache.kudu.client.InsertIgnore;
 import org.apache.kudu.client.KuduClient;
 import org.apache.kudu.client.KuduSession;
 import org.apache.kudu.client.KuduTable;
 import org.apache.kudu.client.Delete;
 import org.apache.kudu.client.Insert;
 import org.apache.kudu.client.Operation;
-import org.apache.kudu.client.UpdateIgnore;
+//import org.apache.kudu.client.UpdateIgnore;
 import org.apache.kudu.client.Upsert;
 import org.apache.kudu.client.Update;
 import org.apache.nifi.processor.ProcessContext;
@@ -81,7 +81,8 @@ public class MockPutKudu extends PutKudu {
                     operation = mock(Insert.class);
                     break;
                 case INSERT_IGNORE:
-                    operation = mock(InsertIgnore.class);
+//                    operation = mock(InsertIgnore.class);
+                    operation = mock(Insert.class);
                     break;
                 case UPSERT:
                     operation = mock(Upsert.class);
@@ -89,15 +90,15 @@ public class MockPutKudu extends PutKudu {
                 case UPDATE:
                     operation = mock(Update.class);
                     break;
-                case UPDATE_IGNORE:
-                    operation = mock(UpdateIgnore.class);
-                    break;
+//                case UPDATE_IGNORE:
+//                    operation = mock(UpdateIgnore.class);
+//                    break;
                 case DELETE:
                     operation = mock(Delete.class);
                     break;
-                case DELETE_IGNORE:
-                    operation = mock(DeleteIgnore.class);
-                    break;
+//                case DELETE_IGNORE:
+//                    operation = mock(DeleteIgnore.class);
+//                    break;
                 default:
                     throw new IllegalArgumentException(String.format("OperationType: %s not supported by Kudu", operationType));
             }

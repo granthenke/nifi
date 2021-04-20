@@ -594,13 +594,13 @@ public class PutKudu extends AbstractKuduProcessor {
                 operation = kuduTable.newInsert();
                 break;
             case INSERT_IGNORE:
-                // If the target Kudu cluster does not support ignore operations use an insert.
-                // The legacy session based insert ignore will be used instead.
-                if (!supportsInsertIgnoreOp) {
+//                // If the target Kudu cluster does not support ignore operations use an insert.
+//                // The legacy session based insert ignore will be used instead.
+//                if (!supportsInsertIgnoreOp) {
                     operation = kuduTable.newInsert();
-                } else {
-                    operation = kuduTable.newInsertIgnore();
-                }
+//                } else {
+//                    operation = kuduTable.newInsertIgnore();
+//                }
                 break;
             case UPSERT:
                 operation = kuduTable.newUpsert();
@@ -608,15 +608,15 @@ public class PutKudu extends AbstractKuduProcessor {
             case UPDATE:
                 operation = kuduTable.newUpdate();
                 break;
-            case UPDATE_IGNORE:
-                operation = kuduTable.newUpdateIgnore();
-                break;
+//            case UPDATE_IGNORE:
+//                operation = kuduTable.newUpdateIgnore();
+//                break;
             case DELETE:
                 operation = kuduTable.newDelete();
                 break;
-            case DELETE_IGNORE:
-                operation = kuduTable.newDeleteIgnore();
-                break;
+//            case DELETE_IGNORE:
+//                operation = kuduTable.newDeleteIgnore();
+//                break;
             default:
                 throw new IllegalArgumentException(String.format("OperationType: %s not supported by Kudu", operationType));
         }

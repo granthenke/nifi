@@ -135,11 +135,12 @@ public abstract class AbstractKuduProcessor extends AbstractProcessor {
     }
 
     protected boolean supportsIgnoreOperations() {
-        try {
-            return kuduClient.supportsIgnoreOperations();
-        } catch (KuduException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            return kuduClient.supportsIgnoreOperations();
+//        } catch (KuduException e) {
+//            throw new RuntimeException(e);
+//        }
+        return false;
     }
 
     protected void createKerberosUserAndOrKuduClient(ProcessContext context) throws LoginException {
@@ -356,12 +357,12 @@ public abstract class AbstractKuduProcessor extends AbstractProcessor {
                     case DECIMAL:
                         row.addDecimal(columnIndex, new BigDecimal(DataTypeUtils.toString(value, recordFieldName)));
                         break;
-                    case VARCHAR:
-                        row.addVarchar(columnIndex, DataTypeUtils.toString(value, recordFieldName));
-                        break;
-                    case DATE:
-                        row.addDate(columnIndex, DataTypeUtils.toDate(value, () -> DataTypeUtils.getDateFormat(RecordFieldType.DATE.getDefaultFormat()), recordFieldName));
-                        break;
+//                    case VARCHAR:
+//                        row.addVarchar(columnIndex, DataTypeUtils.toString(value, recordFieldName));
+//                        break;
+//                    case DATE:
+//                        row.addDate(columnIndex, DataTypeUtils.toDate(value, () -> DataTypeUtils.getDateFormat(RecordFieldType.DATE.getDefaultFormat()), recordFieldName));
+//                        break;
                     default:
                         throw new IllegalStateException(String.format("unknown column type %s", colType));
                 }
@@ -395,8 +396,8 @@ public abstract class AbstractKuduProcessor extends AbstractProcessor {
             case CHAR:
             case STRING:
                 return Type.STRING;
-            case DATE:
-                return Type.DATE;
+//            case DATE:
+//                return Type.DATE;
             default:
                 throw new IllegalArgumentException(String.format("unsupported type %s", nifiType));
         }
